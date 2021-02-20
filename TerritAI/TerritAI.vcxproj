@@ -139,7 +139,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="board.cpp" />
+    <ClCompile Include="engine.cpp" />
+    <ClCompile Include="moveGenerator.cpp" />
+    <ClCompile Include="moveList.cpp" />
     <ClCompile Include="TerritAI.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="engine.h" />
+    <ClInclude Include="board.h" />
+    <ClInclude Include="moveGenerator.h" />
+    <ClInclude Include="moveList.h" />
+    <ClInclude Include="square.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
