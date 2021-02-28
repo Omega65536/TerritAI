@@ -35,6 +35,10 @@ void Board::undoMove() {
 	//std::cout << toString() << "\n";
 }
 
+int getStatus() {
+	return 0;
+}
+
 std::string Board::toString() {
 	std::string o[8] = { "","","","","","","","" };
 	for (Square x = 0; x < 8; x++) {

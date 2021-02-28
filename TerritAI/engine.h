@@ -8,4 +8,7 @@ namespace Engine {
 	Square findBestMove(int depth, Board& board);
 	int search(int alpha, int beta, int depth, Board& board);
 	int evaluate(Board& board);
+
+	Square getMoveMC(int games, Board& board);
+	int monteCarlo(int games, Board& board);
 }

@@ -21,7 +21,7 @@ int main() {
 
     auto start = std::chrono::system_clock::now();
 
-    Square move;
+   /* Square move;
     for (int i = 0; i < 32; i++) {
         move = Engine::findBestMove(4, board);
         board.move(move);
@@ -29,17 +29,19 @@ int main() {
         std::cout << squareToString(move) << "\n";
         std::cout << board.toString() << "\n";
 
-        move = Engine::findBestMove(6, board);
+        move = Engine::findBestMove(8, board);
         board.move(move);
 
         std::cout << squareToString(move) << "\n";
         std::cout << board.toString() << "\n";
-    }
+    }*/
 
     auto stop = std::chrono::system_clock::now();
     int time = std::chrono::duration_cast<std::chrono::microseconds>(stop - start).count();
 
-    /*Square move;
+    //std::cout << time << std::endl;
+
+    Square move;
     while (true) {
         std::string input;
         std::cin >> input;
@@ -49,8 +51,8 @@ int main() {
         std::cout << squareToString(move) << "\n";
         std::cout << board.toString() << "\n";
 
-        move = Engine::findBestMove(6, board);
+        move = Engine::getMoveMC(100'000, board);
         board.move(move);
         std::cout << board.toString() << "\n";
-    }*/
+    }
 }

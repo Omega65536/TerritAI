@@ -30,8 +30,8 @@ Square Engine::getMove(int maxTime, Board& board) {
 }
 
 Square Engine::findBestMove(int depth, Board& board) {
-	int bestscore = -9999;
 	Square bestmove = C8;
+	int bestscore = -9999;
 	int alpha = -10'000;
 	int beta = 10'000;
 
@@ -93,4 +93,50 @@ int Engine::evaluate(Board& board) {
 
 	board.whiteToMove = orgColor;
 	return board.whiteToMove ? score : - score;
+}
+
+Square Engine::getMoveMC(int games, Board& board) {
+	int bestscore = -games;
+	Square bestmove = C8;
+
+	MoveList moveList = MoveGenerator::generateMoves(board);
+	for (int i = 0; i < moveList.numMoves; i++) {
+		board.move(moveList.moves[i]);
+		int score = board.whiteToMove ? -monteCarlo(games, board) : monteCarlo(games, board);
+		board.undoMove();
+
+		std::cout << squareToString(moveList.moves[i]) << ": " << score << "\n";
+
+		if (score > bestscore) {
+			bestscore = score;
+			board.d_score = score;
+			bestmove = moveList.moves[i];
+		}
+	}
+
+	return bestmove;
+}
+
+int Engine::monteCarlo(int games, Board& board) {
+	int score = 0;
+
+	for (int i = 0; i < games; i++) {
+		int depth = 0;
+		MoveList moveList = MoveGenerator::generateMoves(board);
+
+		while (moveList.numMoves != 0) {
+			int i = rand() % moveList.numMoves;
+			Square move = moveList.moves[i];
+			depth++;
+			board.move(move);
+			moveList = MoveGenerator::generateMoves(board);
+		}
+
+		score += board.whiteToMove ? -1 : 1;
+		for (int i = 0; i < depth; i++) {
+			board.undoMove();
+		}
+	}
+	
+	return score;
 }

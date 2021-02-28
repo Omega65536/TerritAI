@@ -23,5 +23,7 @@ struct Board {
 
 	void move(const Square move);
 	void undoMove();
+
+	int getStatus();
 	std::string toString();
 };
